@@ -206,12 +206,11 @@ public class SecurityCamSensor : MonoBehaviour
                 float currRot = zRot * t;
                 if (isActive && !turnedOff)
                 {
-                    transform.Rotate(new Vector3(0, 0, currRot));
+                    transform.Rotate(new Vector3(0, 0, currRot * Time.deltaTime));
                     timePassed += Time.deltaTime;
                 }
                 yield return null;
             }
-            transform.Rotate(new Vector3(0, 0, zRot));
             timePassed = 0;
             while (timePassed < duration)
             {
@@ -219,12 +218,11 @@ public class SecurityCamSensor : MonoBehaviour
                 float currRot = reverseRot * t;
                 if (isActive && !turnedOff)
                 {
-                    transform.Rotate(new Vector3(0, 0, currRot));
+                    transform.Rotate(new Vector3(0, 0, currRot * Time.deltaTime));
                     timePassed += Time.deltaTime;
                 }
                 yield return null;
             }
-            transform.Rotate(new Vector3(0, 0, reverseRot));
 
             yield return new WaitForSeconds(waitTimeBetweenRotations);
         }
