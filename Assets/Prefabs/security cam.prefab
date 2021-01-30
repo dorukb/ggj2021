@@ -156,7 +156,7 @@ MonoBehaviour:
   light2d: {fileID: 5684285694166355911}
   lightCollider: {fileID: 5684285694166355910}
   shouldRotate: 1
-  zRot: 0.1
+  zRot: 40
   halfRotationDuration: 2.5
   waitTimeBetweenRotations: 0.5
   detectionLimit: 2
