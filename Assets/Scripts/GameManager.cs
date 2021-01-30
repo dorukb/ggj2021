@@ -25,10 +25,15 @@ public class GameManager : MonoBehaviour
         won = 4
     }
 
-    private void Awake()
+    private void Start()
     {
         state = GameState.intro;
         // wait for intro to play etc.
+
+        Invoke("GameStart", 0.25f);
+    }
+    void GameStart()
+    {
 
         state = GameState.playing;
         onGameStateChange?.Invoke(state);

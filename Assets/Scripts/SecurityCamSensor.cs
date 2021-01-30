@@ -13,9 +13,10 @@ public class SecurityCamSensor : MonoBehaviour
 
     [Header("Rotation parameters")]
     public bool shouldRotate = true;
-    public float zRot = 0.1f; //radians
+    public float zRot = 40f; // around 40
     public float halfRotationDuration = 2.5f;
     public float waitTimeBetweenRotations = 0.5f;
+    public float startDelay = 0f;
 
     [Header("Detection parameters")]
     public float detectionLimit = 2f;
@@ -193,6 +194,8 @@ public class SecurityCamSensor : MonoBehaviour
     }
     IEnumerator Rotate() 
     {
+        yield return new WaitForSeconds(startDelay);
+
         float timePassed = 0f;
         while (true)
         {
