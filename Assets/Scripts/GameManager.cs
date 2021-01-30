@@ -78,19 +78,27 @@ public class GameManager : MonoBehaviour
             onGameStateChange?.Invoke(state);
         }
     }
-
+    public void PauseWithoutUI()
+    {
+        state = GameState.paused;
+        onGameStateChange?.Invoke(state);
+    }
     public void RestartButtonCallback()
     {
         // restart the scene. change if multiple scenes are added.
-
         failCount++;
         if(failCount > 2)
         {
             failCount = 0;
             currLevel = 1;
         }
+        FindObjectOfType<Journal>().RemoveItem(currLevel - 1);
         SceneManager.LoadScene(0);
 
     }
+    public void QuitButtonCallback()
+    {
+        Application.Quit();
 
+    }
 }

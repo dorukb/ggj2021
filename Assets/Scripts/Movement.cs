@@ -17,6 +17,7 @@ public class Movement : MonoBehaviour
 
     bool processInput = false;
     Vector2 savedVelocity;
+    float originalForce;
     private void OnEnable()
     {
         GameManager.onGameStateChange += handleStateChange;
@@ -29,6 +30,7 @@ public class Movement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        originalForce = pushForce;
     }
     private void handleStateChange(GameManager.GameState state)
     {
@@ -67,5 +69,27 @@ public class Movement : MonoBehaviour
         else if (rb.velocity.x < -tiltThreshold) playerVisuals.localRotation = Quaternion.Euler(0, 0, tiltAmount);
         else playerVisuals.localRotation = Quaternion.Euler(0, 0, 0);
     }
+
+    //public void GiveBoost(float boostAmount, int boostDir)
+    //{
+    //    if(rb.velocity.x * boostDir < 0) // reverse direction move, dont push, just slow down
+    //    {
+    //        pushForce /= 2f;
+    //    }
+    //    else
+    //    {
+    //        rb.velocity += new Vector2(boostAmount * boostDir, 0);
+    //        maxMoveSpeed += 2;
+    //    }
+    //}
+    //public void RemoveBoost(float boostAmount, int boostDir)
+    //{
+    //    pushForce = originalForce;
+    //    rb.velocity -= new Vector2(boostAmount * boostDir, 0);
+    //    maxMoveSpeed -= 2;
+
+    //    if (boostDir > 0 && rb.velocity.x < 0) rb.velocity = Vector2.zero;
+    //    else if (boostDir < 0 && rb.velocity.x > 0) rb.velocity = Vector2.zero;
+    //}
 
 }
