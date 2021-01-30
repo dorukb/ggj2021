@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public static Action levelFailed;
     public static Action<GameState> onGameStateChange;
     public static int currLevel = 1;
+    public static int failCount = 0;
 
     public GameState state = GameState.intro;
     public enum GameState
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
     {
         state = GameState.intro;
         // wait for intro to play etc.
-
+        Debug.Log(failCount);
         Invoke("GameStart", 0.25f);
     }
     void GameStart()
@@ -81,7 +82,15 @@ public class GameManager : MonoBehaviour
     public void RestartButtonCallback()
     {
         // restart the scene. change if multiple scenes are added.
+
+        failCount++;
+        if(failCount > 2)
+        {
+            failCount = 0;
+            currLevel = 1;
+        }
         SceneManager.LoadScene(0);
+
     }
 
 }

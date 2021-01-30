@@ -14,7 +14,11 @@ public class TransitionManager : MonoBehaviour
     public float duration = 1f;
     Color transparent = new Color(0, 0, 0, 0);
 
-
+    private void Start()
+    {
+        MovePlayerToStartingPosition();
+        MoveCameraToPosition();
+    }
     public void ChangeLevel()
     {
         GameManager.currLevel++;
