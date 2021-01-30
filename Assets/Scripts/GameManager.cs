@@ -25,11 +25,9 @@ public class GameManager : MonoBehaviour
         won = 4
     }
 
-    private void Start()
+    private void Awake()
     {
         state = GameState.intro;
-
-
         // wait for intro to play etc.
 
         state = GameState.playing;
