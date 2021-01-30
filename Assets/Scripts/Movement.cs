@@ -5,12 +5,15 @@ using UnityEngine;
 using static GameManager;
 public class Movement : MonoBehaviour
 {
+    public Transform playerVisuals;
     public float pushForce = 400f;
     public float maxMoveSpeed = 4f;
+    public float tiltAmount = 5f;
+    public float tiltThreshold = 1.5f;
     Vector3 translation;
 
-    Vector2 maxMoveVector;
     Rigidbody2D rb;
+    Vector3 tiltedRight = new Vector3(0, 0, -5f);
 
     bool processInput = false;
     Vector2 savedVelocity;
@@ -26,7 +29,6 @@ public class Movement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        maxMoveVector = new Vector2(maxMoveSpeed, maxMoveSpeed);
     }
     private void handleStateChange(GameManager.GameState state)
     {
@@ -60,6 +62,10 @@ public class Movement : MonoBehaviour
         rb.AddForce(translation.normalized * pushForce * Time.deltaTime);
 
         if (rb.velocity.magnitude > maxMoveSpeed) rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxMoveSpeed);
+
+        if (rb.velocity.x > tiltThreshold) playerVisuals.localRotation = Quaternion.Euler(0, 0, -tiltAmount);
+        else if (rb.velocity.x < -tiltThreshold) playerVisuals.localRotation = Quaternion.Euler(0, 0, tiltAmount);
+        else playerVisuals.localRotation = Quaternion.Euler(0, 0, 0);
     }
 
 }

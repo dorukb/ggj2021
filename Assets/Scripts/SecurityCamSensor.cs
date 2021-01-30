@@ -26,7 +26,7 @@ public class SecurityCamSensor : MonoBehaviour
     public bool shouldTurnOnOff = false;
     public float turnOnOffPeriod = 2f; 
     public float animationDuration = 1f;
-
+    public float onOffStartDelay = 0f;
     float reverseRot = -0.1f;
     float detectionTimer = 0;
 
@@ -153,6 +153,8 @@ public class SecurityCamSensor : MonoBehaviour
     bool turnedOff = false;
     IEnumerator TurnOnOff()
     {
+        yield return new WaitForSeconds(onOffStartDelay);
+
         while (true)
         {
             float duration = animationDuration;

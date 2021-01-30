@@ -9,13 +9,13 @@ public class CameraFollow : MonoBehaviour
     public Transform rightEnd;
 
 
-    private void Update()
-    {
-        Vector3 targetPos = target.position;
-        targetPos.y = transform.position.y;
-        targetPos.z = transform.position.z;
+    //private void Update()
+    //{
+    //    Vector3 targetPos = target.position;
+    //    targetPos.y = transform.position.y;
+    //    targetPos.z = transform.position.z;
 
-        if (targetPos.x < leftEnd.position.x || targetPos.x > rightEnd.position.x) return;
-        transform.position = targetPos;
-    }
+    //    if (targetPos.x < leftEnd.position.x || targetPos.x > rightEnd.position.x) return;
+    //    transform.position = targetPos;
+    //}
 }

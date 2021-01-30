@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     public static Action levelFailed;
     public static Action<GameState> onGameStateChange;
-
+    public static int currLevel = 1;
 
     public GameState state = GameState.intro;
     public enum GameState
