@@ -29,7 +29,12 @@ public class GameManager : MonoBehaviour
     {
         state = GameState.intro;
         // wait for intro to play etc.
-        Debug.Log(failCount);
+        //Debug.Log(failCount);
+        if(failCount == 0)
+        {
+            //restarted properly, select target
+            FindObjectOfType<GuessingGame>().SelectSet();
+        }
         Invoke("GameStart", 0.25f);
     }
     void GameStart()

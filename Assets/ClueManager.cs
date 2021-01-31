@@ -21,13 +21,19 @@ public class ClueManager : MonoBehaviour
     {
         foundClues = new List<Item>();
     }
-
+    public void SetupItems(List<Item> selecteditems)
+    {
+        items = selecteditems;
+    }
     public void PickAnItemCallback()
     {
         //pick and item and show it, then add to the journal.
         if (alreadyPicked) return;
 
-        currentItem = items[0]; // here pick at random from current "set"
+        int cluesFound = Journal.itemsFound.Count;
+        if (cluesFound > 3) Debug.Log("shouldnt happen, 4th clue??");
+
+        currentItem = items[cluesFound]; // here pick at random from current "set"
         foundClues.Add(currentItem);
         FindObjectOfType<Journal>().AddItem(currentItem);
 

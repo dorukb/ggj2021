@@ -8,7 +8,6 @@ public class Journal : MonoBehaviour
 
     public List<GameObject> uiEntries;
     public static List<Item> itemsFound = new List<Item>();
-
     bool open = false;
 
     public void OpenJournal()
