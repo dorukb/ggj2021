@@ -37,6 +37,8 @@ public class SecurityCamSensor : MonoBehaviour
     bool playerDetected = false;
     bool stateChanged = false;
     bool isActive = false;
+
+    CameraSFX sfx;
     public enum State
     {
         idle = 0,
@@ -56,6 +58,8 @@ public class SecurityCamSensor : MonoBehaviour
         {
             StartCoroutine(TurnOnOff());
         }
+
+        sfx = FindObjectOfType<CameraSFX>();
     }
     private void OnEnable()
     {
@@ -148,6 +152,7 @@ public class SecurityCamSensor : MonoBehaviour
     void GiveAlarm() 
     {
         StopAllCoroutines();
+        if (sfx) sfx.PlayAlarm();
         FindObjectOfType<GameManager>()?.LevelFailed();
     }
     bool turnedOff = false;
@@ -238,6 +243,10 @@ public class SecurityCamSensor : MonoBehaviour
         if (collision.gameObject.CompareTag("Player")) 
         {
             playerDetected = true;
+            if (sfx)
+            {
+                sfx.PlayWarning();
+            }
         }
     }
  

@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject failScreen;
     public GameObject pauseScreen;
+    public GameObject healthUI;
     //public GameObject settingsScreen;
 
     public static Action levelFailed;
@@ -30,7 +31,6 @@ public class GameManager : MonoBehaviour
         {
             //restarted properly, select target
             FindObjectOfType<GuessingGame>().SelectSet();
-            Debug.Log("Select new set.");
         }
     }
     private void Start()
@@ -95,10 +95,18 @@ public class GameManager : MonoBehaviour
     public void RestartButtonCallback()
     {
         // restart the scene. change if multiple scenes are added.
+        if(currLevel == 4) 
+        {
+            failCount = 3;
+            // if you fail at the guessing game, directly lose all lives.
+        }
+
+        ShowHealth.remainingLives--;
         failCount++;
         if(failCount > 2)
         {
             failCount = 0;
+            ShowHealth.remainingLives = 3;
             currLevel = 1;
             // delete all items. restart case
             FindObjectOfType<Journal>().RemoveAll();
@@ -108,6 +116,7 @@ public class GameManager : MonoBehaviour
             // delete last collected item
             FindObjectOfType<Journal>().RemoveItem(currLevel - 1);
         }
+
         SceneManager.LoadScene(1); // 0 is intro.
 
     }
@@ -118,6 +127,8 @@ public class GameManager : MonoBehaviour
         if(currLevel == 4) //final level
         {
             guessNotif.SetActive(true);
+
+            healthUI.SetActive(false); // no health indicator on last level.
         }
     }
     public void QuitButtonCallback()

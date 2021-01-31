@@ -26,7 +26,7 @@ public class GuessingGame : MonoBehaviour
     public void SelectSet()
     {
         int rand = Random.Range(1, 4);
-        Debug.Log("Selected item set is: " + rand);
+        //Debug.Log("Selected item set is: " + rand);
         switch (rand)
         {
             case 1:

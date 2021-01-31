@@ -10,6 +10,8 @@ public class Movement : MonoBehaviour
     public float maxMoveSpeed = 4f;
     public float tiltAmount = 5f;
     public float tiltThreshold = 1.5f;
+    public float moveSoundThreshold = 0.5f;
+    public AudioSource src;
     Vector3 translation;
 
     Rigidbody2D rb;
@@ -63,6 +65,16 @@ public class Movement : MonoBehaviour
         //transform.Translate(translation.normalized * moveSpeed * Time.deltaTime);
         rb.AddForce(translation.normalized * pushForce * Time.deltaTime);
 
+        if(rb.velocity.magnitude > moveSoundThreshold)
+        {
+            if(!src.isPlaying){
+                src.Play();
+            }
+        }
+        else
+        {
+            src.Pause();
+        }
         if (rb.velocity.magnitude > maxMoveSpeed) rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxMoveSpeed);
 
         if (rb.velocity.x > tiltThreshold) playerVisuals.localRotation = Quaternion.Euler(0, 0, -tiltAmount);
@@ -77,26 +89,5 @@ public class Movement : MonoBehaviour
     {
         processInput = true;
     }
-    //public void GiveBoost(float boostAmount, int boostDir)
-    //{
-    //    if(rb.velocity.x * boostDir < 0) // reverse direction move, dont push, just slow down
-    //    {
-    //        pushForce /= 2f;
-    //    }
-    //    else
-    //    {
-    //        rb.velocity += new Vector2(boostAmount * boostDir, 0);
-    //        maxMoveSpeed += 2;
-    //    }
-    //}
-    //public void RemoveBoost(float boostAmount, int boostDir)
-    //{
-    //    pushForce = originalForce;
-    //    rb.velocity -= new Vector2(boostAmount * boostDir, 0);
-    //    maxMoveSpeed -= 2;
-
-    //    if (boostDir > 0 && rb.velocity.x < 0) rb.velocity = Vector2.zero;
-    //    else if (boostDir < 0 && rb.velocity.x > 0) rb.velocity = Vector2.zero;
-    //}
 
 }
