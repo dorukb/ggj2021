@@ -25,7 +25,14 @@ public class AudioManager : MonoBehaviour
         bgSource.Play();
     }
 
-
+    public void TurnBgMusicOn()
+    {
+        bgSource.Play();
+    }
+    public void TurnOffBg()
+    {
+        bgSource.Stop();
+    }
 
 
 }

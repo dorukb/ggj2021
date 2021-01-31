@@ -136,4 +136,9 @@ public class GameManager : MonoBehaviour
         Application.Quit();
 
     }
+
+    public void ToMenuScene()
+    {
+        SceneManager.LoadScene(0); // 0 is intro.
+    }
 }

@@ -72,7 +72,7 @@ public class GuessingGame : MonoBehaviour
         confirmationUI.SetActive(true);
         recentGuess = guess;
     }
-
+    public GameObject winScreen;
     public void YesButton()
     {
         guessNotifUI.SetActive(false);
@@ -83,7 +83,7 @@ public class GuessingGame : MonoBehaviour
         {
             //correct ! won
             Debug.Log("You have won!!");
-
+            winScreen.SetActive(true);
         }
         else
         {
