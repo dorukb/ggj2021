@@ -124,6 +124,7 @@ public class GameManager : MonoBehaviour
     public void LevelPassed()
     {
         currLevel++;
+        if (currLevel > 4) currLevel = 0;
         if(currLevel == 4) //final level
         {
             guessNotif.SetActive(true);
@@ -136,7 +137,10 @@ public class GameManager : MonoBehaviour
         Application.Quit();
 
     }
-
+    public void EndGame()
+    {
+        currLevel = 0;
+    }
     public void ToMenuScene()
     {
         SceneManager.LoadScene(0); // 0 is intro.

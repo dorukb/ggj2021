@@ -83,6 +83,7 @@ public class GuessingGame : MonoBehaviour
         {
             //correct ! won
             Debug.Log("You have won!!");
+            FindObjectOfType<GameManager>().EndGame();
             winScreen.SetActive(true);
         }
         else
