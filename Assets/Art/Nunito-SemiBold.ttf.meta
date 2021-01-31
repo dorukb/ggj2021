@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 74f59525acb064746b21547e628c7079
+guid: 9e30e3ef6d0f5ce4d9550fee972926ff
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: VAGRounded BT
+  fontName: Nunito
   fontNames:
-  - VAGRounded BT
+  - Nunito
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
