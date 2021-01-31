@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ public class ClueManager : MonoBehaviour
 
     public GameObject ShowItemUI;
     public Image ItemVisual;
+    public TextMeshProUGUI itemDescription;
 
     public List<Item> items;
 
@@ -44,6 +46,7 @@ public class ClueManager : MonoBehaviour
         ShowItemUI.SetActive(true);
         OpenLuggageImage.SetActive(false);
         ItemVisual.sprite = currentItem.visual;
+        itemDescription.text = currentItem.desc;
     }
 
     public void EndLuggageScene()

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 414e7774bfcdb31408dab3e0df974461, type: 3}
-  m_Name: person3
+  m_Name: wrong3_1
   m_EditorClassIdentifier: 
-  visual: {fileID: -6507385439709580406, guid: 0d3056df811818f4e9f8aa6edc0fa259, type: 3}
+  visual: {fileID: -8696644380649456635, guid: c82437f5c2b71ea4ca7a75660492e1df, type: 3}
   desc: person 1

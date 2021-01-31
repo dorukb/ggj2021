@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 414e7774bfcdb31408dab3e0df974461, type: 3}
-  m_Name: person2
+  m_Name: shavingMachine
   m_EditorClassIdentifier: 
-  visual: {fileID: -6507385439709580406, guid: 0d3056df811818f4e9f8aa6edc0fa259, type: 3}
-  desc: person 1
+  visual: {fileID: -68751727340038015, guid: c3d6f6d88e9215143b6fd8acc29b47dc, type: 3}
+  desc: I can already smell the fresh odor of the lotion!

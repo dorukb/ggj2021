@@ -13,16 +13,20 @@ public class GuessingGame : MonoBehaviour
     public List<Item> personsSet2;
     public List<Item> personsSet3;
 
-    public List<Item> selectedSet;
-    public List<Item> selectedPersons;
+    public static List<Item> selectedSet;
+    public static List<Item> selectedPersons;
 
 
     public List<Person> persons;
 
     public Item correctPerson;
+    public GameObject confirmationUI; 
+    public GameObject guessNotifUI;
+
     public void SelectSet()
     {
         int rand = Random.Range(1, 4);
+        Debug.Log("Selected item set is: " + rand);
         switch (rand)
         {
             case 1:
@@ -51,10 +55,31 @@ public class GuessingGame : MonoBehaviour
         }
         FindObjectOfType<ClueManager>().SetupItems(selectedSet.GetRange(0, itemSet1.Count-1));
     }
-
-    public void Guess(Item guess)
+    public void Start()
     {
-        if(correctPerson == guess)
+        correctPerson = selectedPersons[0];
+        for (int i = 0; i < persons.Count; i++)
+        {
+            // currently always the 1st one is correct, can shuffle
+            persons[i].SetupPerson(selectedPersons[i]);
+        }
+        FindObjectOfType<ClueManager>().SetupItems(selectedSet.GetRange(0, itemSet1.Count - 1));
+    }
+    Item recentGuess;
+    public void MaybeGuess(Item guess)
+    {
+        FindObjectOfType<GameManager>().PauseWithoutUI();
+        confirmationUI.SetActive(true);
+        recentGuess = guess;
+    }
+
+    public void YesButton()
+    {
+        guessNotifUI.SetActive(false);
+        FindObjectOfType<GameManager>().ResumeButtonCallback();
+
+        confirmationUI.SetActive(false);
+        if (correctPerson == recentGuess)
         {
             //correct ! won
             Debug.Log("You have won!!");
@@ -62,7 +87,15 @@ public class GuessingGame : MonoBehaviour
         }
         else
         {
-            GameManager.levelFailed();
+            Debug.Log("Wrong guess!!");
+            recentGuess = null;
+            FindObjectOfType<GameManager>().LevelFailed();
         }
+    }
+    public void NoButton()
+    {
+        FindObjectOfType<GameManager>().ResumeButtonCallback();
+        recentGuess = null;
+        confirmationUI.SetActive(false);
     }
 }

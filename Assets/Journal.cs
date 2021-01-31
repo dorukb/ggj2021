@@ -58,4 +58,8 @@ public class Journal : MonoBehaviour
     {
         if(index < itemsFound.Count) itemsFound.RemoveAt(index);
     }
+    public void RemoveAll()
+    {
+        itemsFound = new List<Item>();
+    }
 }

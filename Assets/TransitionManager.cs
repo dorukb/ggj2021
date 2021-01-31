@@ -21,7 +21,7 @@ public class TransitionManager : MonoBehaviour
     }
     public void ChangeLevel()
     {
-        GameManager.currLevel++;
+        FindObjectOfType<GameManager>().LevelPassed();
         StartFadeOut();
         Invoke("StartFadeIn", duration);
 

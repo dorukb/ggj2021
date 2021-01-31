@@ -69,7 +69,14 @@ public class Movement : MonoBehaviour
         else if (rb.velocity.x < -tiltThreshold) playerVisuals.localRotation = Quaternion.Euler(0, 0, tiltAmount);
         else playerVisuals.localRotation = Quaternion.Euler(0, 0, 0);
     }
-
+    public void BlockInteraction()
+    {
+        processInput = false;
+    }
+    public void AllowInteraction()
+    {
+        processInput = true;
+    }
     //public void GiveBoost(float boostAmount, int boostDir)
     //{
     //    if(rb.velocity.x * boostDir < 0) // reverse direction move, dont push, just slow down

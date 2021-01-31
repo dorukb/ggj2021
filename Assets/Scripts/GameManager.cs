@@ -24,17 +24,21 @@ public class GameManager : MonoBehaviour
         failed = 3,
         won = 4
     }
-
+    private void Awake()
+    {
+        if (failCount == 0)
+        {
+            //restarted properly, select target
+            FindObjectOfType<GuessingGame>().SelectSet();
+            Debug.Log("Select new set.");
+        }
+    }
     private void Start()
     {
         state = GameState.intro;
         // wait for intro to play etc.
         //Debug.Log(failCount);
-        if(failCount == 0)
-        {
-            //restarted properly, select target
-            FindObjectOfType<GuessingGame>().SelectSet();
-        }
+        
         Invoke("GameStart", 0.25f);
     }
     void GameStart()
@@ -96,10 +100,25 @@ public class GameManager : MonoBehaviour
         {
             failCount = 0;
             currLevel = 1;
+            // delete all items. restart case
+            FindObjectOfType<Journal>().RemoveAll();
         }
-        FindObjectOfType<Journal>().RemoveItem(currLevel - 1);
-        SceneManager.LoadScene(0);
+        else
+        {
+            // delete last collected item
+            FindObjectOfType<Journal>().RemoveItem(currLevel - 1);
+        }
+        SceneManager.LoadScene(1); // 0 is intro.
 
+    }
+    public GameObject guessNotif;
+    public void LevelPassed()
+    {
+        currLevel++;
+        if(currLevel == 4) //final level
+        {
+            guessNotif.SetActive(true);
+        }
     }
     public void QuitButtonCallback()
     {

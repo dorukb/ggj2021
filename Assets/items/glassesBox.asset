@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: glassesBox
   m_EditorClassIdentifier: 
   visual: {fileID: 6761164967045977113, guid: c3d6f6d88e9215143b6fd8acc29b47dc, type: 3}
-  desc: a fancy looking box for  glasses
+  desc: There is an empty container inside of me! I wonder which purpose this tiny
+    container has...
